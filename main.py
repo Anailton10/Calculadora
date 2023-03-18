@@ -1,28 +1,38 @@
 from Calculadora import Calculadora
-from Calculadora import entrada, entrada_Inteiro
 print('=' * 30)
 print('CALCULADORA'.center(30))
 print('=' * 30)
-n1 = entrada('Primeiro Numero: ')
-n2 = entrada('Segundo Numemro: ')
-print('''[ 1 ] SOMA
-[ 2 ] SUBTRÃO
-[ 3 ] MULTIPLICAÇÃo
-[ 4 ] DIVISÃO
-[ 0 ] SAIR''')
-resp = entrada_Inteiro('Escolha uma Opção:')
-resul = Calculadora()
-if resp == 0:
-    print('Até Logo..')
-    resul = '0.0'
-elif resp == 1:
-    resul = resul.soma(n1, n2)
-elif resp == 2:
-    resul = resul.divi(n1, n2)
-elif resp == 3:
-    resul = resul.mult(n1, n2)
-elif resp == 4:
-    resul = resul.divi(n1, n2)
+while True:
+    n1 = str(input('Primeiro Numero: ')).replace(',', '.').strip()
+    if n1.isalpha() or '':
+        print('Digite apenas numeros')
+    else:
+        n1 = float(n1)
+        break
+
+print('''[ + ] SOMA
+[ - ] SUBTRÃO
+[ * ] MULTIPLICAÇÃo
+[ / ] DIVISÃO''')
+resp = str(input('Escolha uma Opção:')).strip()
+while True:
+    n2 = str(input('Segundo Numero: ')).replace(',', '.').strip()
+    if n2.isalpha() or '':
+        print('Digite apenas numeros')
+    else:
+        n2 = float(n2)
+        break
+
+calculadora = Calculadora(n1, n2)
+resul = 0
+if resp == '+':
+    resul = calculadora.soma
+elif resp == '-':
+    resul = calculadora.sub
+elif resp == '*':
+    resul = calculadora.mult
+elif resp == '/':
+    resul = calculadora.divi
 
 print(f'Resultado: {resul}')
 
